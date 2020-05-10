@@ -1,0 +1,97 @@
+﻿@model cardiohealthv001.Models.DoctorDetails
+@{
+    ViewData["Title"] = "Update";
+}
+
+<section class="content-header">
+    <h1>
+        Doctor
+    </h1>
+</section>
+<!-- Main content -->
+<section class="content container-fluid">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Update Doctor</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        @using (Html.BeginForm("UpdateDoctor", "Doctor"))
+        {
+
+            @Html.AntiForgeryToken()
+
+            <div class="box-body">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Position, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.Position, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Practice, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-sm-10">
+                            @Html.EditorFor(model => model.Practice, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Practice, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Bio, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.Bio, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Bio, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class ="form-group" hidden="hidden" >
+                    @Html.LabelFor(model => model.DUserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-sm-10">
+                        @Html.EditorFor(model => model.DUserName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.DUserName, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button type="submit" class="btn btn-info pull-right">Update</button>
+            </div>
+            <!-- /.box-footer -->
+
+        }
+    </div>
+    <!-- /.box -->
+</section>
+
+
+

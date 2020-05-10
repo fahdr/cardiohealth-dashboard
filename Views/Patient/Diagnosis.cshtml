@@ -1,0 +1,112 @@
+﻿
+@model IEnumerable<cardiohealthv001.Models.PatientDiagnosis>
+
+    @{
+        ViewData["Title"] = "Diagnosis";
+    }
+
+    <section class="content-header">
+        <h1>
+            Doctors
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="/Patient/DiagnosisIndex"><i class=""></i> Patients</a></li>
+
+            <li class="active">Diagnosis</li>
+        </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Manage Patient Diagnosis</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Sl No</th>
+                                    <th>Date</th>
+                                    <th>Diagnosis</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@Html.DisplayFor(modelItem => item.DiagnosisNum)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.DiagnosisDate)</td>
+                                        <td>@Html.DisplayFor(modelItem => item.Diagnosis)</td>
+                                    </tr>
+                                }
+                        </table>
+                        <form class="form-horizontal" method="post" action="SendDiagnosis">
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Diagnosis</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" name="Diagnosis" placeholder="Diagnosis">
+                                    </div>
+                                </div>
+
+                            </div>
+                            <!-- /.box-body -->
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-info pull-right">Add</button>
+                            </div>
+                            <!-- /.box-footer -->
+                        </form>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+
+    <!-- DataTables -->
+    <script src="~/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <!-- page script -->
+    <script>
+    $(function () {
+        $('#example1').DataTable();
+    });
+    function Delete(name){
+        alert(name)
+        var txt;
+        var r = confirm("Are you sure you want to Delete?");
+        if (r == true) {
+
+            $.ajax(
+            {
+                type: "POST",
+                url: '@Url.Action("Delete", "Patient")',
+                data: {
+                    name: name
+                },
+                error: function (result) {
+                    alert("error");
+                },
+                success: function (result) {
+                    if (result == true) {
+                        var baseUrl="/Index";
+                        window.location.reload();
+                    }
+                    else {
+                        alert("There is a problem, Try Later!");
+                    }
+                }
+            });
+        }
+    }
+    </script>
+
+
+
